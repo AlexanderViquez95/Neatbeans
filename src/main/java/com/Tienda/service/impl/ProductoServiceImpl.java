@@ -1,6 +1,7 @@
 package com.Tienda.service.impl;
 
 import com.Tienda.dao.ProductoDao;
+import com.Tienda.domain.Categoria;
 import com.Tienda.domain.Producto;
 import com.Tienda.service.ProductoService;
 import java.util.List;
@@ -28,5 +29,23 @@ public class ProductoServiceImpl implements ProductoService{
         return lista;
     }
     
+    @Override
+    @Transactional(readOnly=true)
+    public Producto getProducto(Producto producto){
+        return productoDao.findById(producto.getIdProducto()).orElse(null);
+    }
     
+    
+    @Override
+    @Transactional
+    public void save(Producto producto){
+        productoDao.save(producto);
+    }
+    
+    @Override
+    @Transactional
+    public void delete(Producto producto){
+        productoDao.save(producto);
+    }
 }
+
